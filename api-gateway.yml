@@ -1,1 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: payment-authorization
+          uri: lb://payment-authorization
+          predicates:
+            - Path=/api/v1/authorize/**
+
 
